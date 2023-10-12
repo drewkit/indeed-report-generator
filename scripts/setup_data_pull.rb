@@ -9,7 +9,7 @@ search_query = ARGV[1]
 zip = ARGV[2]
 ###
 
-FileUtils.mkdir_p("#{project_name}/pulled_data")
+FileUtils.mkdir_p("projects/#{project_name}/pulled_data")
 
 print "pulling data for \'#{search_query}\' in #{zip}"
 print ' ['
@@ -41,7 +41,7 @@ while search_result_count < 1000
 end
 
 filename = search_query.gsub(" ","_").gsub("/", "_") + "_#{zip}_search.yml"
-File.open("#{project_name}/pulled_data/#{filename}", "w") do |f|
+File.open("projects/#{project_name}/pulled_data/#{filename}", "w") do |f|
   f.write jobs.to_yaml
 end
 print "]"
