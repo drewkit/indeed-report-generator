@@ -7,7 +7,7 @@ require 'active_support/all'
 project_name = ARGV[0]
 ###
 
-data_pulls = Dir.entries("#{project_name}/pulled_data") - ['.', '..','.DS_Store']
+data_pulls = Dir.entries("projects/#{project_name}/pulled_data") - ['.', '..','.DS_Store']
 data_pulls.each do |data_pull|
   puts data_pull
   match_data = /(?<snake_case_query>.*)(?<zip_chunk>\d{5}_search.yml)/.match(data_pull)
@@ -17,7 +17,7 @@ data_pulls.each do |data_pull|
   print ' ['
 
   search_result_inc = 25
-  indeed_client = Indeed::Client.new ENV['INDEED_REPORT_GENERATOR_PUBLISHER_ID']
+  indeed_client = Indeed::Client.new "823633275211689"
 
   search_result_count = 0
   search_result = [search_result_inc, 25].min
@@ -43,7 +43,7 @@ data_pulls.each do |data_pull|
   end
 
   filename = search_query.gsub(" ","_").gsub("/", "_") + "_#{zip}_search.yml"
-  File.open("#{project_name}/pulled_data/#{filename}", "w") do |f|
+  File.open("projects/#{project_name}/pulled_data/#{filename}", "w") do |f|
     f.write jobs.to_yaml
   end
   print "]"
