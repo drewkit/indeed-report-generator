@@ -10,9 +10,9 @@ project_name = ARGV[0]
 data_pulls = Dir.entries("projects/#{project_name}/pulled_data") - ['.', '..','.DS_Store']
 data_pulls.each do |data_pull|
   puts data_pull
-  match_data = /(?<snake_case_query>.*)(?<zip_chunk>\d{5}_search.yml)/.match(data_pull)
+  match_data = /(?<snake_case_query>.*)(?<location_chunk>(\d{5}|remote)_search.yml)/.match(data_pull)
   search_query = match_data[:snake_case_query].gsub("_", " ").strip
-  zip = match_data[:zip_chunk].gsub("_search.yml", "")
+  zip = match_data[:location_chunk].gsub("_search.yml", "")
   print "pulling data for \'#{search_query}\' in #{zip}"
   print ' ['
 
