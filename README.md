@@ -1,3 +1,8 @@
+## Archiving as this Indeed.com Api service no longer exists
+
+
+-------
+
 # Indeed Report Generator
 
 ## Setup Tool
